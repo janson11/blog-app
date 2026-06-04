@@ -1,47 +1,77 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div id="app" class="navbar">
+    <!-- 顶部导航栏 -->
+    <header>
+      <h1>My Blog</h1>
+      <nav>
+        <a href="/">首页</a>
+        <a href="#">关于</a>
+      </nav>
+    </header>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
 
-  <main>
-    <TheWelcome />
-  </main>
+    <!-- 主页内容 -->
+    <main class="container">
+      <p>博客内容将在这里展示</p>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+      <p>2026 My Blog. Powered by Vue3.</p>
+    </footer>
+  </div>
+
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
+<style>
+/* 全局重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f5f5f5;
+  color: #333;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+/* 导航栏 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.navbar h1 {
+  font-size: 24px;
+  color: #42b883;
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.navbar a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* 主内容区 */
+.container {
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* 页脚 */
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  border-top: 1px solid #eee;
 }
 </style>
