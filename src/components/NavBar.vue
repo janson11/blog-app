@@ -1,5 +1,8 @@
 <script setup>
 // 导航栏目前只需要展示，后续会加入搜索和暗黑模式切换
+import { useDarkMode } from '@/composables/useDarkMode';
+
+const { isDark, toggleDark } = useDarkMode()
 
 </script>
 
@@ -10,7 +13,9 @@
 
         <nav>
             <a href="/">首页</a>
-            <a href="#">关于</a>
+            <button class="theme-btn" @click="toggleDark">
+                {{ isDark ? '&#x2600;亮色':'☾ 暗黑' }}
+            </button>
         </nav>
 
     </header>
