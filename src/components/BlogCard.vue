@@ -33,7 +33,7 @@ function handleFavorite(e) {
                 <span class="date"> {{ date }}</span>
                   <!-- 收藏按钮：已收藏显示实心，未收藏显示空心 -->
                    <button class = "fav-btn" @click="handleFavorite">
-                    {{  favoriteStore.isFavorite(id) ? '&#x2665;' : '♡'   }}
+                    {{ favoriteStore.isFavorite(id) ? '♥' : '♡' }}
                    </button>
             </div>
         </div>
@@ -42,6 +42,38 @@ function handleFavorite(e) {
 
 
 <style scoped>
+.card-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  padding: 0;
+}
+
+.card {
+  height: 100%;
+  padding: 20px;
+  background: var(--color-background-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-border-hover);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.tag,
+h3,
+.date {
+  color: #42b883;
+}
+
+p {
+  color: var(--color-text);
+}
+
 .card-footer {
   display: flex;
   justify-content: space-between;

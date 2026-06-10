@@ -30,3 +30,28 @@ function selectCategory(cat) {
         </button>
     </div>
 </template>
+
+<style scoped>
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+button {
+    padding: 6px 12px;
+    color: var(--color-text);
+    background: var(--color-background-mute);
+    border: 1px solid var(--color-border-hover);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button.active,
+button:hover {
+    color: #fff;
+    background: #42b883;
+    border-color: #42b883;
+}
+</style>

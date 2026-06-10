@@ -1,21 +1,26 @@
 <script setup>
+import { computed } from 'vue';
 import { usePosts } from '@/composables/usePost';
 import { useRoute } from 'vue-router';
-
+import { useFavoriteStore } from '@/store/useFavoriteStore';
+const favoriteStore = useFavoriteStore();
 
 const route = useRoute()
 const id = Number(route.params.id)
 
-const { idLoading, error, getArticleById } = usePosts()
+const { isLoading, error, getArticleById } = usePosts()
 // getArticleById 从已加载的数据中查找，不需要再次 fetch
 const article = computed(() => getArticleById(id))
 </script>
 
 <template>
-    <p v-if="idLoading"> 加载中...</p>
+    <p v-if="isLoading">加载中...</p>
+    <p v-else-if="error">{{ error }}</p>
     <div v-else-if="!article">文章不存在</div>
-    <article v-else>
+    <article v-else class="post-view">
         <h1> {{ article.title }}</h1>
+        <!-- 详情页的收藏按钮：状态与首页完全同步 -->
+         <button class="fav-btn" @click="favoriteStore.toggleFavorite(article.id)"> {{ favoriteStore.isFavorite(article.id) ? '♥ 已收藏' : '♡ 收藏' }}</button>
         <div v-html="article.content"></div>
     </article>
 </template>

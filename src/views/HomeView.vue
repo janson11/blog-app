@@ -1,14 +1,4 @@
-// 父组件使用 BlogCard 时，通过冒号绑定属性传入数据：
-// props 是单向数据流：只能父 → 子，子组件不能修改 props 的值。如果子组件需要修改，应该通过 emit 通知父组件去改
-// 父组件通过 @事件名="处理函数" 来监听子组件事件：
-// 完整的数据流向
-// 父组件通过 props 向下 传数据，子组件通过 emit 向上 发事件。
-
-// 数据始终由父组件「拥有」和修改，子组件只负责展示和通知。
-
-
 <script setup>
-
 import BlogCard from '@/components/BlogCard.vue';
 import CategoryFilter from '@/components/CategoryFilter.vue';
 import { usePosts } from '@/composables/usePost';
@@ -22,10 +12,8 @@ const {
     keyword,
     categories,
     filteredArticles,
-    setCategory,
-    fetchPosts
+    setCategory
 } = usePosts()
-
 </script>
 
 
@@ -39,10 +27,11 @@ const {
 
         <!-- 分类筛选器 -->
         <CategoryFilter :categories="categories" :active-category="activeCategory"
-            @update-category="handleCategoryChange" />
+            @update-category="setCategory" />
 
         <!-- 加载 / 空 / 正常 -->
         <p v-if="isLoading">加载中...</p>
+        <p v-else-if="error">{{ error }}</p>
         <p v-else-if="filteredArticles.length === 0">没有找到匹配的文章</p>
         <div v-else class="article-grid">
             <BlogCard v-for="article in filteredArticles" :key="article.id" :id="article.id" :title="article.title"
@@ -66,7 +55,9 @@ const {
 .search-input {
     width: 100%;
     padding: 12px 40px 12px 16px;
-    border: 2px solid #eee;
+    color: var(--color-text);
+    background: var(--color-background-soft);
+    border: 2px solid var(--color-border);
     border-radius: 8px;
     font-size: 15px;
     outline: none;

@@ -5,7 +5,7 @@ import App from './App.vue'
 import router from './router'
 import { createPinia } from 'pinia'
 
-const app = createApp(app)
+const app = createApp(App)
 
 // 创建Pinia实例并注册
 const pinia = createPinia()
